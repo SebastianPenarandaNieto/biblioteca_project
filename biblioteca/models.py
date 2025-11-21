@@ -24,3 +24,4 @@ class Resena(models.Model):
 
     def __str__(self):
         return f"{self.libro.titulo}: {self.calificacion}/5"
+    
