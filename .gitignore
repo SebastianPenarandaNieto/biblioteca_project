@@ -1,0 +1,17 @@
+# Entorno virtual
+venv/
+env/
+
+# Archivos de python
+__pycache__/
+*.pyc
+
+# Base de datos
+db.sqlite3
+
+# Archivos de migraciones
+# */migrations/
+
+# Configuración del editor
+.vscode/
+.idea/
