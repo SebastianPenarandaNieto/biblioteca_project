@@ -1,16 +1,15 @@
 from django.contrib import admin
-from models import *
+from .models import Autor, Libro, Resena
 
+@admin.register(Autor)
 class AutorAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('nombre', 'nacionalidad')
 
+@admin.register(Libro)
 class LibroAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('titulo', 'autor', 'fecha_publicacion')
 
+@admin.register(Resena)
 class ResenaAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('libro', 'calificacion')
 
-
-admin.register(Autor, AutorAdmin)
-admin.register(Libro, LibroAdmin)
-admin.register(Resena, ResenaAdmin)
