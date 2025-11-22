@@ -2,6 +2,7 @@ from biblioteca.models import Autor, Libro, Resena
 import random
 
 # Autores
+
 autor1 = Autor.objects.create(nombre="Gabriel García Marquez", nacionalidad = "Colombiano")
 autor2 = Autor.objects.create(nombre="Juancho de la espriella", nacionalidad = "Colombiano")
 autor3 = Autor.objects.create(nombre="Maduro Cabrales", nacionalidad = "Venezolano")
@@ -10,6 +11,7 @@ autor5 = Autor.objects.create(nombre="Augusto Tinieblas", nacionalidad = "Argent
 
 
 # Libros
+
 libro1 = Libro.objects.create(
     titulo="Las ventanas del cielo",
     autor=autor1,
@@ -152,6 +154,7 @@ libro20 = Libro.objects.create(
 
 libros = [libro1, libro2, libro3, libro4, libro5, libro6, libro7, libro8, libro9, libro10,
           libro11, libro12, libro13, libro14, libro15, libro16, libro17, libro18, libro19, libro20]
+
 # Resenas
 
 resenas = {1:"Muy malo", 2:"Malo", 3:"Regular", 4:"Bueno", 5:"Excelente"}

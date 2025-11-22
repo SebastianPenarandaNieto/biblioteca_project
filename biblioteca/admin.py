@@ -32,7 +32,7 @@ class LibroAdmin(admin.ModelAdmin):
 
 @admin.register(Resena)
 class ResenaAdmin(admin.ModelAdmin):
-    list_display = ('libro', 'calificacion')
+    list_display = ('libro', 'calificacion', 'texto', 'fecha')
     search_fields = ('libro__titulo',)
     list_filter = ('calificacion',)
     ordering = ('-calificacion',)
