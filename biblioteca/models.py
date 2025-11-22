@@ -1,10 +1,11 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+import re
 
-def validar_no_vacio(val: str):
-     if not val or not val.strip():
-        raise ValidationError("Este campo no puede estar vacío ni tener solo espacios.")
-     
+def validar_nacionalidad_sin_numeros(val: str):
+     if re.search(r"\d", val):
+        raise ValidationError("La nacionalidad no puede contener números.")
+
 def validar_resumen_minimo(val: str):
     if len(val) < 30:
         raise ValidationError("El resumen debe tener al menos 30 caracteres.")
@@ -14,14 +15,17 @@ def validar_calificacion(val: int):
         raise ValidationError("La calificación debe estar entre 1 y 5.")
     
 class Autor(models.Model):
-    nombre = models.CharField(max_length=100, validators=[validar_no_vacio])
-    nacionalidad = models.CharField(max_length=100, validators=[validar_no_vacio])
+    nombre = models.CharField(max_length=100, error_messages={'blank': 'El nombre no puede estar vacío.'})
+    nacionalidad = models.CharField(
+        max_length=100, 
+        error_messages={'blank': 'La nacionalidad no puede estar vacía.'}, 
+        validators=[validar_nacionalidad_sin_numeros])
 
     def __str__(self):
         return self.nombre
 
 class Libro(models.Model):
-    titulo = models.CharField(max_length=100, validators=[validar_no_vacio])
+    titulo = models.CharField(max_length=100, error_messages={'blank': 'El titulo no puede estar vacío.'})
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE, related_name="libros")
     fecha_publicacion = models.DateField()
     resumen = models.TextField(validators=[validar_resumen_minimo])
