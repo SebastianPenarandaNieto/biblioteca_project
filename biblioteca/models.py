@@ -19,7 +19,7 @@ class Libro(models.Model):
 class Resena(models.Model):
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE, related_name="resenas")
     texto = models.TextField()
-    calificacion = models.FloatField()
+    calificacion = models.IntegerField()
     fecha = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
