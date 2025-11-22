@@ -150,7 +150,7 @@ libro20 = Libro.objects.create(
     resumen="Un libro misterioso que muestra distintos caminos según el lector."
 )
 
-Libros = [libro1, libro2, libro3, libro4, libro5, libro6, libro7, libro8, libro9, libro10,
+libros = [libro1, libro2, libro3, libro4, libro5, libro6, libro7, libro8, libro9, libro10,
           libro11, libro12, libro13, libro14, libro15, libro16, libro17, libro18, libro19, libro20]
 # Resenas
 
