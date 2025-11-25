@@ -12,6 +12,9 @@ class AutorViewSet(viewsets.ModelViewSet):
     serializer_class = AutorSerializer
     pagination_class = AutorPagination
 
+    filterset_fields = ['nombre', 'nacionalidad']
+    ordering_fields = ['nombre', 'nacionalidad']
+
     def perform_create(self, serializer):
         nombre = serializer.validated_data.get('nombre', '').strip()
         nacionalidad = serializer.validated_data.get('nacionalidad', '').strip().title()
