@@ -5,10 +5,12 @@ from rest_framework.response import Response
 from django.db.models import Avg
 from .models import Libro, Autor, Resena
 from .serializers import AutorSerializer, LibroSerializer, ResenaSerializer
+from .pagination import AutorPagination, LibroPagination, ResenaPagination
 
 class AutorViewSet(viewsets.ModelViewSet):
     queryset = Autor.objects.all()
     serializer_class = AutorSerializer
+    pagination_class = AutorPagination
 
     def perform_create(self, serializer):
         nombre = serializer.validated_data.get('nombre', '').strip()
@@ -18,6 +20,10 @@ class AutorViewSet(viewsets.ModelViewSet):
 class LibroViewSet(viewsets.ModelViewSet):
     queryset = Libro.objects.all()
     serializer_class = LibroSerializer
+    pagination_class = LibroPagination
+
+    filterset_fields = ['autor', 'fecha_publicacion']
+    ordering_fields = ['titulo', 'fecha_publicacion']
 
     def get_queryset(self):
         if self.request.query_params.get('recent'):
@@ -35,6 +41,7 @@ class LibroViewSet(viewsets.ModelViewSet):
 class ResenaViewSet(viewsets.ModelViewSet):
     queryset = Resena.objects.all()
     serializer_class = ResenaSerializer
+    pagination_class = ResenaPagination
 
     def get_queryset(self):
         if self.request.query_params.get('recent'):
